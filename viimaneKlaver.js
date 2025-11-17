@@ -32,4 +32,4 @@ piano: "<msr1 msr2 msr3 msr4 msr5 msr6 msr7 msr8>".pickRestart({
   msr6: `<rh6, lh6>`,
   msr7: `<rh7, lh7>`,
   msr8: `<rh8, lh8>`
-}).pick(hands).note().s("piano").room(1.05).slow(2)
+}).pick(hands).note().s("piano").slow(2)._pianoroll()
