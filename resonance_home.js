@@ -3,12 +3,12 @@
 // script @by KRistmets
 setcps(80/60/4)
 
-let chords = {X1:"F3, Ab3, C4, Eb4", X2:"Ab3, C4, Eb4, G4", X3:"C4, Eb4, G4, Bb4", 
-           X4:"F3, Ab3, C4, Eb4", X5:"Bb3, Db4, F4", X6:"Ab3, C4, Eb4, G4"}
+let chords = {X1:"F3, Ab3, C4, Eb4", X2:"Ab3, C4, Eb4, G4, Bb4", X3:"C4, Eb4, G4, Bb4, C5", 
+           X4:"F3, Ab3, C4, Eb4", X5:"Bb3, Db4, F4, Ab4, Bb4", X6:"Ab3, C4, Eb4, G4, Ab4"}
 
 let chordEffects = register('chordEffects', (x, pat) => pat
   .gain(1.6 - (1.1*x))
-  .lpf(400 + (x * 300))
+  .lpf(500 + (x * 300))
   .lpa(.4)
   .attack(.055)
   .decay(0.5 + x*0.4)
@@ -37,5 +37,5 @@ $drums: "< - 0 1 1>/4".pick([
 ]).pickOut({
   bd: s("bd").gain(0.7).lpf(1500),
   sd: s("sd:4").gain(0.6).lpf(1500),
-  hh: s("hh").gain(1).lpf(1900)
+  hh: s("hh").gain(0.7).lpf(1900)
 })._punchcard()
