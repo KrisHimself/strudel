@@ -18,12 +18,6 @@ let hands = {
 
 }
  
-// piano: "<msr1 msr2 msr3 msr4>".pickRestart({
-//   msr1: `<rh1, lh1>`,
-//   msr2: `<rh2, lh2>`,
-//   msr3: `<rh3, lh3>`,
-//   msr4: `<rh4, lh4>`
-// }).pick(hands).note().s("piano").slow(2)._pianoroll()
 piano: stack(
   "<msr1 msr2 msr3 msr4>".pickRestart({
     msr1: `<rh1>`,
