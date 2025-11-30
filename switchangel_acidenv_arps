@@ -1,0 +1,32 @@
+// poly arps and acidenv
+// song @by Switch Angel
+// script @by KRistmets
+// https://youtu.be/dcmwqqzJubA?si=rdyTqhX_IaG_9RPf
+
+setCpm(136/4)
+
+const acidenv = register('acidenv', (x, pat) => pat
+  .lpf(100)
+  .lpenv(x * 9)
+  .lps(.2)
+  .lpd(.12)
+)
+
+const slideController1 = slider(0.916)
+const slideController2 = tri.slow(24)
+
+$lead: n("<0 4 0 9 7>*16".add("<7 _ _ 6 5 _ _ 6>*2"))
+  .scale("g:minor").trans(-12).orbit(3)
+  .s("sawtooth").acidenv(slideController2)
+  ._pianoroll()
+
+$bass: n("<0>*16".add("<7 _ _ 6 5 _ _ 6>*2"))
+  .scale("g:minor").trans(-24)
+  .detune(rand).orbit(4)
+  .s("supersaw").acidenv(slideController2)
+  ._pianoroll()
+
+$drums: stack(
+  s("bd:4!4").duck("3:4:5:6").duckdepth(.8),
+  s("hh:1*16").orbit(5)
+)._scope()
