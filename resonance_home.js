@@ -17,14 +17,14 @@ let chordEffects = register('chordEffects', (x, pat) => pat
   .release(x*0.1)
   .detune("5")
   .lpenv(x * -2.2)
-  .add(note(perlin.range(0,.5))) // Tape Warble
+  .add(note(perlin.range(-0.1,0.3).slow(2))) // Tape Warble
 )
 
 
 $chords: "i1".pickRestart(
   {i1: `[X1@2 X1@2 X1@1.5]@2.75 [X2*2]@2 [X3*6]@6 [X4@2 X4@2 X4@1.5]@2.75 [X5*2]@2 [X6*6]@6`}
   ).slow(4).pickOut(chords).note().s("sawtooth")
-  .chordEffects(cosine.slow(2.3), sine) //.gain(0.6)
+  .chordEffects(cosine.slow(2.3), sine)
   ._pianoroll()
 
 $bass: note("[F1@2 F1@2 F1@1.5]@2.75 [Ab1*2]@2 [C2*6]@6 [F1@2 F1@2 F1@1.5]@2.75 [Bb1*2]@2 [Ab1*6]@6")
