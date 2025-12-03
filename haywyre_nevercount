@@ -1,34 +1,37 @@
 // "Never count on me"
 // song @by Haywyre???
 // script @by KRistmets
-// Completely unfinished
-// TODO: 1) Fix chords  2) figure out how to change octave of the chords
-setcpm(40)
+/*
+TODO: 1) Fix the fucking chord synth sound. Should be a warm pad.
+      2) figure out the actual chords
+*/
+setcpm(90/4)
+
+// let chords = [
+//   "A7@3 A#@5",
+//   "Dm7",
+//   "A7@6 A#@8 Dm7@2",
+//   "-"
+// ]
+
+let chords = [
+  "[A2, C#3]@3 [A2#, D3]@5",
+  "[F2, A2]@3 [F2, A2]@5",
+  "[D2, F3]@4 [D2, F3]@2 [C2, E3]@2"
+]
+
+let arp = [
+  "A3 C#5 E5 G5 A5@2 A#3 D5 F5 G5 A5@6",
+  "F3 A4 C5 D5 E5@2 F3 A4 C5 D5 E5 F5 G5 F5 E5@2",
+  "D3 F4 A4 C5 D5@2 D3 F4 F6 E6 D6 A5 F5 E5 D5 A4",
+  ]
 
 
-let hands = {
-  rh1: "A4 C#5 E5 G5 A5@2 A#4 D5 F5 G5 A5@6",
-  lh1: "A7@6 A#@10",
-  rh2: "F4 A4 C5 D5 E5@2 F4 A4 C5 D5 E5 F5 G5 F5 E5@2",
-  lh2: "Dm7",
-  rh3: "A4 C#5 E5 G5 A5@2 A#4 D5 F5 G5 A5@6",
-  lh3: "A7@6 A#@8 Dm7@2",
-  rh4: "D4 F4 A4 C5 D5@2 D4 F4 F6 E6 D6 A5 F5 E5 D5 A4",
-  lh4: "-",
+$harp: "<0 1 0 2>".pick(arp).note().sound("harp, hh:4").gain(1.4)
 
-}
- 
-piano: stack(
-  "<msr1 msr2 msr3 msr4>".pickRestart({
-    msr1: `<rh1>`,
-    msr2: `<rh2>`,
-    msr3: `<rh3>`,
-    msr4: `<rh4>`
-  }).pick(hands).note().s("piano").slow(2)._pianoroll(),
-  "<msr1 msr2 msr3 msr4>".pickRestart({
-    msr1: `<lh1>`,
-    msr2: `<lh2>`,
-    msr3: `<lh3>`,
-    msr4: `<lh4>`
-  }).pick(hands).voicing().s("piano").slow(2)._pianoroll()
+$chords: "<0 1 0 2>".pick(chords).note().sound("supersaw").lpf("1000").lpenv("2").gain(0.5)
+
+$drums: stack(
+  s("bd:6@3 bd:6@5").gain(0.5),
+  s("- cp:2 - cp:2").gain(0.15).room(0.5)
 )
