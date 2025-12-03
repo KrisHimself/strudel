@@ -29,7 +29,7 @@ let arp = [
 
 $harp: "<0 1 0 2>".pick(arp).note().sound("harp, hh:4").gain(1.4)
 
-$chords: "<0 1 0 2>".pick(chords).note().sound("supersaw").lpf("1000").lpenv("2").gain(0.5)
+$chords: "<0 1 0 2>".pick(chords).note().sound("supersaw").lpf("900").lpenv("-1.4").gain(0.5)
 
 $drums: stack(
   s("bd:6@3 bd:6@5").gain(0.5),
