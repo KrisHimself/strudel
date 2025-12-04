@@ -1,0 +1,22 @@
+// "Ambient"
+// song @by KRistmets
+/*
+TODO: 
+*/
+setcpm(90/4)
+
+
+let chords = [
+  "C1, C3, E3, G4",
+  "C1, G2, C3, Eb3, F4, G4",
+  "C1, C3, E3, G4, Bb4",
+  "[D2, F3]@4 [D2, F3]@2 [C2, E3]@2"
+]
+
+$chords: "<0@2 1@2 2@2>".pick(chords).note().sound("supersaw")
+  .lpf("1000")
+  .adsr(".9:.9:.9:.7")
+  .room("2")
+  .slow(4)
+  .detune(".2")
+
