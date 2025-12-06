@@ -1,4 +1,4 @@
 {
-  "_base": "https://raw.githubusercontent.com/KrisHimself/strudel/samples/main/",
+  "_base": "https://raw.githubusercontent.com/KrisHimself/strudel/refs/heads/main/samples/main",
   "pad": ["01_pad_resonance.wav"]
 }
