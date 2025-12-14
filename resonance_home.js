@@ -1,30 +1,36 @@
 // "Resonance"
 // song @by Home
 // script @by KRistmets
-// TODO: figure out a warm synth sound
+
 setcps(80/60/4)
 
+samples({
+'pad': { 'C4': '01_pad_resonance.wav' },
+}, 'https://raw.githubusercontent.com/KrisHimself/strudel/main/samples/')
+
+
 let chords = {X1:"F3, Ab3, C4, Eb4", X2:"Ab3, C4, Eb4, G4, Bb4", X3:"C4, Eb4, G4, Bb4, C5", 
-           X4:"F3, Ab3, C4, Eb4", X5:"Bb3, Db4, F4, Ab4, Bb4", X6:"Ab3, C4, Eb4, G4, Ab4"}
+           X4:"F3, Ab3, C4, Eb4, Eb5", X5:"Bb3, Db4, F4, Ab4, Bb4", X6:"Ab3, C4, Eb4, G4, Ab4"}
 
 let chordEffects = register('chordEffects', (x, pat) => pat
-  .gain(0.6 - (0.3*x))
-  .lpf(500 + (x * 300))
-  .lpa(.4)
+  .gain(0.5 - (0.3*x))
+  .lpf(800 + (x * 600))
+  // .lpa(.4)
   .attack(.055)
-  .decay(0.5 + x*0.4)
-  .sustain(x)
-  .release(x*0.1)
-  .detune("5")
-  .lpenv(x * -2.2)
+  // .decay(0.5 + x*0.4)
+  // .sustain(x)
+  // .release(x*0.1)
+  // .detune("2")
+  // .lpenv(x * -2.2)
   .add(note(perlin.range(-0.1,0.3).slow(2))) // Tape Warble
 )
 
 
 $chords: "i1".pickRestart(
   {i1: `[X1@2 X1@2 X1@1.5]@2.75 [X2*2]@2 [X3*6]@6 [X4@2 X4@2 X4@1.5]@2.75 [X5*2]@2 [X6*6]@6`}
-  ).slow(4).pickOut(chords).note().s("sawtooth")
-  .chordEffects(cosine.slow(2.3), sine)
+  ).slow(4).pickOut(chords).note().s("pad")
+  // .chordEffects(cosine.slow(2.3))
+  .chordEffects(perlin.range(0, 1).slow(2))
   ._pianoroll()
 
 $bass: note("[F1@2 F1@2 F1@1.5]@2.75 [Ab1*2]@2 [C2*6]@6 [F1@2 F1@2 F1@1.5]@2.75 [Bb1*2]@2 [Ab1*6]@6")
@@ -38,5 +44,5 @@ $drums: "< - 0 1 1>/4".pick([
 ]).pickOut({
   bd: s("bd").gain(0.7).lpf(1500),
   sd: s("sd:4").gain(0.6).lpf(1500),
-  hh: s("hh").gain(0.5).lpf(1900)
+  hh: s("hh").gain(0.35).lpf(1900)
 })._punchcard()
